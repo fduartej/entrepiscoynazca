@@ -11,5 +11,9 @@ import com.entrepiscoynazca.appweb.model.Producto;
 @Controller
 public class ProductoController{
 
+    public String index(){
+        System.out.println("Fin");
+        return "producto/index";
+    }
     
 }
