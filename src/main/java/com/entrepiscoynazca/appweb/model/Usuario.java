@@ -1,4 +1,4 @@
-package com.entrepiscoynazca.appweb.domain;
+package com.entrepiscoynazca.appweb.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

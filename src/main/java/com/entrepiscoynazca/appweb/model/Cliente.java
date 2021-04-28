@@ -1,4 +1,4 @@
-package com.entrepiscoynazca.appweb.domain;
+package com.entrepiscoynazca.appweb.model;
 
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
