@@ -5,14 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 @Controller
-public class ContactoController{
-
+public class ClienteController {
     
-    private static final String INDEX ="contacto/create"; 
+    private static final String INDEX ="cliente/index"; 
 
-    @GetMapping("/contacto/create")
+    @GetMapping("/cliente/index")
     public String index(Model model) {
         return INDEX;
-    }   
+    }    
 
 }
