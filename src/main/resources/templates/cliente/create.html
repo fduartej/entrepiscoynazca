@@ -52,7 +52,9 @@
                 </div>
                 <div class="col-sm-3">
                   <div class="input-group date">
-                    <input type="text" class="form-control" id="birthdate" data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'" autocomplete="off" th:field="*{birthdate}" />
+                    <input type="text" class="form-control" id="birthdate" 
+                      data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'" 
+                      autocomplete="off" th:field="*{birthdate}" />
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
@@ -99,10 +101,10 @@
               </div>
               <div class="form-group row">
                 <div class="col-sm-2">
-                  <label for="user.password">User</label>
+                  <label for="user.password">Password</label>
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" th:field="*{user.password}" />
+                  <input type="password" th:field="*{user.password}" />
                 </div>
               </div>              
               <div class="form-group row">
