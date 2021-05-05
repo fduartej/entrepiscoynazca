@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 
 import com.entrepiscoynazca.appweb.model.Cliente;
 import com.entrepiscoynazca.appweb.repository.ClienteRepository;
+import com.entrepiscoynazca.appweb.repository.UsuarioRepository;
 
 import javax.validation.Valid;
 
@@ -17,9 +18,13 @@ public class ClienteController {
     private static final String INDEX ="cliente/create"; 
     private static String MODEL_CONTACT="client";
     private final ClienteRepository clientsData;
+    private final UsuarioRepository usuariosData;
 
-    public ClienteController(ClienteRepository clientsData){
+    public ClienteController(ClienteRepository clientsData,
+        UsuarioRepository usuariosData    
+        ){
         this.clientsData = clientsData;
+        this.usuariosData = usuariosData;
     }      
 
     @GetMapping("/cliente/create")
@@ -34,6 +39,8 @@ public class ClienteController {
         if(result.hasFieldErrors()) {
             model.addAttribute("mensaje", "No se registro un cliente");
         }else{
+            this.usuariosData.save(objCliente.getUser());
+            this.usuariosData.flush();
             this.clientsData.save(objCliente);
             model.addAttribute(MODEL_CONTACT, objCliente);
             model.addAttribute("mensaje", "Se registro un cliente");
