@@ -30,7 +30,7 @@ public class Cliente {
     private String email;
     private String phone; 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date birtdate; 
+    private Date birthdate; 
     private String gender;
     private String maritalStatus;  
     @OneToOne(fetch = FetchType.LAZY)
