@@ -22,14 +22,12 @@
           <tbody>
             <tr th:each="producto : ${productos}">
               <td>
-                <img class="img-responsive" src="../static/resources/catalogo/${producto.imageFileName}"  th:src="@{'/resources/images/'+${producto.imageFileName}}"/>
-              </td>
-              <td th:text="${producto.descripcion}"></td>
-              <td th:text="${producto.precio}"></td>
-              <td>
+                <img class="img-responsive" src="../static/resources/catalogo/${producto.imageFileName}"  th:src="@{'/resources/catalogo/'+${producto.imageFileName}}"/>
+                <p th:text="${producto.descripcion}" />
+                <p th:text="${producto.precio}" />
                 <a th:href="@{'/catalogo/add/__${producto.id}__'}"
   			           class="btn btn-info" role="button">Add</a>
-              </td>              
+              </td>
             </tr>
           </tbody>
         </table>
