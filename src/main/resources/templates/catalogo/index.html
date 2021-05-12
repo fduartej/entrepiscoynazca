@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org" 
-    th:replace="~{fragments/layout :: layout (~{::body},'producto')}">
+    th:replace="~{fragments/layout :: layout (~{::body},'catalogo')}">
 
 <head>
-  <title>Producto</title>
+  <title>Catalogo</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -17,26 +17,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mt-5 mb-5">
-        <h2>Contacts</h2><br/>
-        <a href="/producto/create">Create</a>
+        <h2>Catalogo</h2><br/>
         <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Descripcion</th>
-              <th>Precio</th>
-              <th>Image</th>
-            </tr>
-          </thead>
           <tbody>
             <tr th:each="producto : ${productos}">
               <td>
-                <a th:href="@{'/producto/edit/__${producto.id}__'}"
-  			           class="btn btn-info" role="button">Edit</a>
+                <img class="img-responsive" src="../static/resources/catalogo/${producto.imageFileName}"  th:src="@{'/resources/images/'+${producto.imageFileName}}"/>
               </td>
               <td th:text="${producto.descripcion}"></td>
               <td th:text="${producto.precio}"></td>
-              <td th:text="${producto.imageFileName}"></td>
+              <td>
+                <a th:href="@{'/catalogo/add/__${producto.id}__'}"
+  			           class="btn btn-info" role="button">Add</a>
+              </td>              
             </tr>
           </tbody>
         </table>
