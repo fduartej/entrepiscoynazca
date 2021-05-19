@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org" 
-    th:replace="~{fragments/layout :: layout (~{::body},'catalogo')}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'catalogo')}">
 
 <head>
   <title>Catalogo</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
   <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
@@ -16,21 +16,28 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 mt-5 mb-5">
-        <h2>Catalogo</h2><br/>
-        <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-          <tbody>
-            <tr th:each="producto : ${productos}">
-              <td>
-                <img class="img-responsive" src="../static/resources/catalogo/${producto.imageFileName}"  th:src="@{'/resources/catalogo/'+${producto.imageFileName}}"/>
-                <p th:text="${producto.descripcion}" />
-                <p th:text="${producto.precio}" />
-                <a th:href="@{'/catalogo/add/__${producto.id}__'}"
-  			           class="btn btn-info" role="button">Add</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col">
+        <div id="products" class="mb-3">
+          <div class="row">
+            <div th:each="producto : ${products}" class="col-sm-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="card-img-actions">
+                    <img class="img-responsive" alt="${producto.descripcion}" width="96" height="150"
+                      src="../static/resources/catalogo/${producto.imageFileName}"
+                      th:src="@{'/resources/catalogo/'+${producto.imageFileName}}" />
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" th:text="${producto.descripcion}">Product name</h5>
+                  <p class="card-text" th:text="${producto.precio}">Price</p>
+                  <a th:href="@{'/catalogo/add/__${producto.id}__'}" 
+                      class="btn btn-primary" role="button">Add</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

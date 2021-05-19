@@ -26,7 +26,7 @@ public class CatalogoController{
     @GetMapping("/catalogo/index")
     public String index(Model model){
         List<Producto> listProducto = this.productsData.getAllActiveProductos();
-        model.addAttribute("productos",listProducto);
+        model.addAttribute("products",listProducto);
         return INDEX;
     }    
 
