@@ -58,7 +58,7 @@ public class ProductoController {
     }
 
     @GetMapping("/producto/edit/{id}")
-    public String edit(@PathVariable("id") int id, 
+    public String edit(@PathVariable("id") Integer id, 
         Model model){
         Producto producto = this.productsData.getOne(id);
         model.addAttribute(MODEL_PRODUCTO, producto);

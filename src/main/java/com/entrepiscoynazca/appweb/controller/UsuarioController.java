@@ -59,4 +59,10 @@ public class UsuarioController {
         }
         return page;
     }
+
+    @GetMapping("/usuario/logout")
+	public String logoutSession(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "redirect:/";
+	}
 }

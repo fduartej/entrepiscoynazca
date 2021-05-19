@@ -26,7 +26,7 @@ import lombok.*;
 public class Proforma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")    
     private Producto product;

@@ -24,7 +24,7 @@ import lombok.*;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String firstName;
     private String lastName;
     private String email;
