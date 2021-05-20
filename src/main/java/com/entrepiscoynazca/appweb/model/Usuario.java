@@ -22,5 +22,6 @@ public class Usuario implements Serializable{
     @Column(name = "user_id")
     private String userID;
     private String password;
+    private String tipoUsuario;
 
 }
