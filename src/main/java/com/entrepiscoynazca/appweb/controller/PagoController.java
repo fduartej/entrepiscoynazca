@@ -63,8 +63,10 @@ public class PagoController {
         pago.setPaymentDate(new Date());
         pago.setMontoTotal(montoTotal);
         pago.setClienteId(cliente.getId());
+        pago.setNombreTarjeta(
+            cliente.getFirstName().concat(" ").
+            concat(cliente.getLastName()));
         model.addAttribute(MODEL_VIEW, pago);
-        model.addAttribute("cliente", cliente);
         return VIEW_INDEX;
     }   
 
