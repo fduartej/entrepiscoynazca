@@ -31,17 +31,20 @@
           </thead>
           <tbody>
             <tr th:each="proforma : ${proformas}">
-              <td th:text="${proforma.product.id}"></td>
-              <td th:text="${proforma.product.descripcion}"></td>
-              <td th:text="${proforma.precio}"></td>
-              <td>
-                <input type="number" class="form-control" id="cantidad" 
-                  autocomplete="off" th:value="${proforma.cantidad}"
-                  min="1" max="100"/>
-              </td>
-              <td>
-                <a href="#" class="btn btn-primary">Update</a>
-              </td>              
+                <td th:text="${proforma.product.id}"></td>
+                <td th:text="${proforma.product.descripcion}"></td>
+                <td th:text="${proforma.precio}"></td>
+                <td>
+                  <input type="number" class="form-control" id="cantidad" 
+                    autocomplete="off" th:value="${proforma.cantidad}"
+                    min="1" max="100"/>
+                </td>
+                <td>
+                  <form th:object="${proforma}" th:action="@{/proforma/update}" method="post">
+                    <input type="hidden" th:value="${proforma.id}"/>
+                    <button th:with="text='Update'" class="btn btn-primary" type="submit" th:text="${text}"/>
+                  </form>
+                </td>
             </tr>
           </tbody>
         </table>

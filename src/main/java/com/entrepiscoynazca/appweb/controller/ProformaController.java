@@ -39,9 +39,11 @@ public class ProformaController {
 
     @PostMapping("/proforma/update")
     public String createSubmitForm(Model model, 
-        @Valid Producto objProducto, BindingResult result ){
-
-        return VIEW_INDEX;
+        @Valid Proforma objProforma, BindingResult result ){
+        Proforma prof = proformaData.getOne(objProforma.getId());
+        prof.setCantidad(objProforma.getCantidad());
+        proformaData.save(prof);
+        return "redirect:/proforma/index";
     }
 
 
