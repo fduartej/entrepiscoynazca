@@ -20,7 +20,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "t_proforma")
-public class Proforma {
+public class DetallePedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,8 +28,8 @@ public class Proforma {
     @JoinColumn(name = "producto_id")    
     private Producto product;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private Usuario user;
+    @JoinColumn(name = "order_id")    
+    private Pedido pedido;
     private BigDecimal precio;
     private Integer cantidad;   
 }
