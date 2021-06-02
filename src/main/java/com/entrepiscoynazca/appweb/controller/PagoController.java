@@ -100,7 +100,8 @@ public class PagoController {
             objPago.setPaymentDate(new Date());
             pagoData.save(objPago);
             model.addAttribute(MODEL_VIEW, objPago);
-            model.addAttribute("mensaje", "Se registro su pago y se genero su pedido");
+            pedidoData.flush();
+            model.addAttribute("mensaje", "Se registro su pago y se genero su pedido nro "+ pedido.getId());
         }
         return VIEW_INDEX;
     }
