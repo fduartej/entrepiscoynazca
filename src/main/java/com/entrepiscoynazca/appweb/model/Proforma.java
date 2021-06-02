@@ -31,5 +31,7 @@ public class Proforma {
     @JoinColumn(name = "user_id")
     private Usuario user;
     private BigDecimal precio;
-    private Integer cantidad;   
+    private Integer cantidad; 
+    @Builder.Default
+    private String status="PENDING";  
 }

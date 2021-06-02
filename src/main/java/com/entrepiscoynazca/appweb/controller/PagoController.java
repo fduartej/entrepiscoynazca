@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.entrepiscoynazca.appweb.model.Cliente;
+import com.entrepiscoynazca.appweb.model.DetallePedido;
 import com.entrepiscoynazca.appweb.model.Pago;
 import com.entrepiscoynazca.appweb.model.Pedido;
 import com.entrepiscoynazca.appweb.model.Proforma;
@@ -23,6 +24,7 @@ import javax.validation.Valid;
 
 import java.util.List;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -71,8 +73,9 @@ public class PagoController {
     }   
 
     @PostMapping("/pago/create")
-    public String createSubmitForm(Model model, 
+    public String createSubmitForm(Model model, HttpSession session,
         @Valid Pago objPago, BindingResult result ){
+        Usuario user = (Usuario)session.getAttribute("user"); 
         if(result.hasFieldErrors()) {
             model.addAttribute("mensaje", "No se puede registrar pago");
         }else{
@@ -81,6 +84,20 @@ public class PagoController {
             pedido.setMontoTotal(objPago.getMontoTotal());
             pedido.setOrderDate(new Date());
             pedidoData.save(pedido);
+            List<Proforma> listItems = proformaData.findItemsByUsuario(user);
+            listItems.stream().forEach(o -> o.setStatus("PROCESED"));
+            proformaData.saveAll(listItems);
+            List<DetallePedido> detalles = new ArrayList<DetallePedido>();
+            for (Proforma pro : listItems) {
+                DetallePedido dp = new DetallePedido();
+                dp.setPedido(pedido);
+                dp.setProduct(pro.getProduct());
+                dp.setPrecio(pro.getPrecio());
+                dp.setCantidad(pro.getCantidad());
+                detalles.add(dp);
+            }
+            detallePedidoData.saveAll(detalles);
+            objPago.setPaymentDate(new Date());
             pagoData.save(objPago);
             model.addAttribute(MODEL_VIEW, objPago);
             model.addAttribute("mensaje", "Se registro su pago y se genero su pedido");
