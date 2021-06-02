@@ -57,6 +57,10 @@ public class PagoController {
         Usuario user = (Usuario)session.getAttribute("user"); 
         Cliente cliente = clienteData.findByUsuario(user);
         List<Proforma> listItems = proformaData.findItemsByUsuario(user);
+        if(listItems.isEmpty()){
+            model.addAttribute("mensaje", "Carrito Vacio");
+            return "proforma/index";
+        }
         BigDecimal montoTotal = listItems.stream().
             map(n -> n.getPrecio().multiply(
                         new BigDecimal(n.getCantidad()))).
