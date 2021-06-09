@@ -58,8 +58,13 @@ public class ProductoRestController {
     }
 
     @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Producto> update(@RequestBody Producto e){
-        create(e);
+    public ResponseEntity<Producto> update(@RequestBody Producto update){
+        Optional<Producto> optinalEntity = productsData.findById(update.getId());
+        if(optinalEntity.isPresent()){
+            Producto current = optinalEntity.get();
+            current.setDescripcion(update.getDescripcion());
+            create(current);
+        }
         return new ResponseEntity<Producto>(HttpStatus.OK);
     }
 }
