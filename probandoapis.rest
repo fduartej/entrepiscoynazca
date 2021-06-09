@@ -1,4 +1,6 @@
-@host = https://web-integrado-plantitas.herokuapp.com
+#@host = https://web-integrado-plantitas.herokuapp.com
+
+@host = http://localhost:8080
 
 GET {{host}}/api/productos/ HTTP/1.1
 Accept: application/json
@@ -17,13 +19,13 @@ Content-Type: application/json
     "status": "A"
 }
 
-DELETE {{host}}/api/productos/2 HTTP/1.1
+DELETE {{host}}/api/productos/7 HTTP/1.1
 Accept: application/json
 
 PUT {{host}}/api/productos/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "id":3,
-    "descripcion": "Tequila Cuervo"
+    "id":8,
+    "descripcion": "Tequila Cuervo New"
 }
