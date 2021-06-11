@@ -26,6 +26,6 @@ PUT {{host}}/api/productos/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "id":11,
+    "id":12,
     "descripcion": "Tequila Cuervo New"
 }
