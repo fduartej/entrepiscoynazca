@@ -13,5 +13,5 @@ public interface  PedidoRepository extends JpaRepository<Pedido, Integer>{
 
     @Query(value = "SELECT o FROM Pedido o WHERE o.clienteId=?1")
     List<Pedido> findItemsByCliente(Integer clienteId);
-    
+
 }
