@@ -14,22 +14,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import net.sf.jasperreports.engine.*;
 
-
-
 @Controller
 public class ReporteController {
     
+    private JdbcTemplate jdbcTemplate;
+
+    public ReporteController(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @GetMapping("/jasper/repventas")
-    public void generateReporteVentas(HttpServletResponse response) throws IOException, JRException {
+    public void generateReporteVentas(HttpServletResponse response)  {
         response.setContentType("application/x-download");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"ventas.pdf\""));
-        OutputStream out = response.getOutputStream();
-        Connection connection = JdbcTemplate.getDataSource().getConnection();
-        File file = ResourceUtils.getFile("classpath:/reports/ReporteDeVentas.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
-        JasperExportManager.exportReportToPdfStream(jasperPrint, out);
+        try {
+            OutputStream out = response.getOutputStream();
+            File file = ResourceUtils.getFile("classpath:reports/ReporteDeVentas.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, 
+                    jdbcTemplate.getDataSource().getConnection());
+            JasperExportManager.exportReportToPdfStream(jasperPrint, out);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
 
