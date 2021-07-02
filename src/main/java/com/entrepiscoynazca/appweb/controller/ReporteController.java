@@ -29,7 +29,7 @@ public class ReporteController {
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"ventas.pdf\""));
         try {
             OutputStream out = response.getOutputStream();
-            File file = ResourceUtils.getFile("classpath:reports/ReporteDeVentas.jrxml");
+            File file = ResourceUtils.getFile("classpath:./reports/ReporteDeVentas.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, 
                     jdbcTemplate.getDataSource().getConnection());
