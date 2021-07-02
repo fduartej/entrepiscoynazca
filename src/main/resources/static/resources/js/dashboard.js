@@ -4,7 +4,7 @@ google.charts.setOnLoadCallback(graficoPrincipal);
 
 function graficoPrincipal() {
       $.ajax({
-        url: "http://localhost:8080/api/dashboard/pedidostotales",
+        url: "api/dashboard/pedidostotales",
         dataType: "json",
       }).done(function (jsonData) {
         var data = new google.visualization.DataTable();
